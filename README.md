@@ -1,8 +1,7 @@
-# Xtb
+# XTB API client for Ruby
 
-TODO: Delete this and the text below, and describe your gem
-
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/xtb`. To experiment with that code, run `bin/console` for an interactive prompt.
+Xtb is a Ruby implementation of the XTB broker API (xAPI) that allows you to connect to the
+XTB broker and execute trades, get account information, and more.
 
 ## Installation
 
@@ -18,7 +17,21 @@ If bundler is not being used to manage dependencies, install the gem by executin
 
 ## Usage
 
-TODO: Write usage instructions here
+### Configuration
+
+Before you can connect to the XTB API, you need to configure the connection. 
+You can do this by creating a configuration object and passing it to the client.
+    
+```ruby
+
+```
+
+### Connect to the XTB API
+
+```ruby
+
+```
+
 
 ## Development
 
@@ -28,7 +41,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/xtb.
+Bug reports and pull requests are welcome on GitHub at https://github.com/jacekmaciag/xtb.
 
 ## License
 
