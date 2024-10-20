@@ -1,15 +1,15 @@
 # frozen_string_literal: true
 
-RSpec.describe Xtb::Http::TradeRecords do
-  subject(:command) { described_class.new(orders) }
+RSpec.describe Xtb::Http::Trades do
+  subject(:command) { described_class.new(opened_only) }
 
-  let(:orders) { [7_497_776] }
+  let(:opened_only) { true }
 
   let(:request) do
     {
-      command: :getTradeRecords,
+      command: :getTrades,
       arguments: {
-        orders:
+        openedOnly: opened_only
       }
     }
   end
@@ -82,7 +82,6 @@ RSpec.describe Xtb::Http::TradeRecords do
           sl: 0.0,
           storage: -4.46,
           symbol: 'EURUSD',
-
           timestamp: 1_272_540_251_000,
           tp: 0.0,
           volume: 0.10
