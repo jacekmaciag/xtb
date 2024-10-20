@@ -20,6 +20,7 @@ require_relative 'http/symbol'
 require_relative 'http/tick_prices'
 require_relative 'http/trade_records'
 require_relative 'http/trades'
+require_relative 'http/trades_history'
 
 module Xtb
   module Http # :nodoc:
