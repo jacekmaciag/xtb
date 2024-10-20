@@ -21,7 +21,7 @@ module Xtb
 
       attr_reader :level, :symbols, :timestamp
 
-      def command = :getMarginLevel
+      def command = :getTickPrices
 
       def arguments
         {

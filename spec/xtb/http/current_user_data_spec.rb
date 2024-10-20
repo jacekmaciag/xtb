@@ -22,12 +22,13 @@ RSpec.describe Xtb::Http::CurrentUserData do
   end
 
   describe '#call' do
-    before do
-      allow(Xtb::Http::SslClient).to receive(:request).and_return(response)
-    end
-
     specify do
-      expect(command.call).to have_attributes(
+      expect(Xtb::Http::SslClient)
+        .to receive(:request)
+        .with(JSON.dump(command: :getCurrentUserData))
+        .and_return(response)
+      expect(command.call)
+        .to have_attributes(
         company_unit: 8,
         currency: 'PLN',
         group: 'demoPLeurSTANDARD200',

@@ -24,11 +24,11 @@ RSpec.describe Xtb::Http::Calendar do
   end
 
   describe '#call' do
-    before do
-      allow(Xtb::Http::SslClient).to receive(:request).and_return(response)
-    end
-
     specify do
+      expect(Xtb::Http::SslClient)
+        .to receive(:request)
+        .with(JSON.dump(command: :getCalendar))
+        .and_return(response)
       expect(command.call.last)
         .to have_attributes(
           country: 'CA',

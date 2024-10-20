@@ -26,7 +26,7 @@ module Xtb
         end
 
         def stream_session_id
-          @session_id ||= BrokerClients::Xtb::Login.call.stream_session_id
+          @stream_session_id ||= BrokerClients::Xtb::Login.call.stream_session_id
         end
 
         private

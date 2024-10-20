@@ -26,7 +26,12 @@ RSpec.describe Xtb::Http::MarginLevel do
     end
 
     specify do
-      expect(command.call).to have_attributes(
+      expect(Xtb::Http::SslClient)
+        .to receive(:request)
+        .with(JSON.dump(command: :getMarginLevel))
+        .and_return(response)
+      expect(command.call)
+        .to have_attributes(
         balance: 995800269.43,
         credit: 1000.00,
         currency: 'PLN',

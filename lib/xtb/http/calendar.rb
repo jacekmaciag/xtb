@@ -22,7 +22,7 @@ module Xtb
 
       private
 
-      def command = :getAllSymbols
+      def command = :getCalendar
     end
   end
 end
