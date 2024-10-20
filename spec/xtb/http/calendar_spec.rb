@@ -6,17 +6,17 @@ RSpec.describe Xtb::Http::Calendar do
   let(:response) do
     JSON.dump(
       {
-        "status": true,
-        "return_data": [
+        'status': true,
+        'return_data': [
           {
-            "country": 'CA',
-            "current": '',
-            "forecast": '',
-            "impact": '3',
-            "period": '(FEB)',
-            "previous": '58.3',
-            "time": 1_374_846_900_000,
-            "title": 'Ivey Purchasing Managers Index'
+            'country': 'CA',
+            'current': '',
+            'forecast': '',
+            'impact': '3',
+            'period': '(FEB)',
+            'previous': '58.3',
+            'time': 1_374_846_900_000,
+            'title': 'Ivey Purchasing Managers Index'
           }
         ]
       }

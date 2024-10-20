@@ -4,18 +4,20 @@ RSpec.describe Xtb::Http::MarginLevel do
   subject(:command) { described_class.new }
 
   let(:response) do
-    JSON.dump({
-                'status' => true,
-                'return_data' => {
-                  'balance' => 1000.0,
-                  'credit' => 0.0,
-                  'currency' => 'USD',
-                  'equity' => 1000.0,
-                  'margin' => 0.0,
-                  'margin_free' => 1000.0,
-                  'margin_level' => 0.0
-                }
-              })
+    JSON.dump(
+      {
+        'status': true,
+        'returnData': {
+          'balance': 995800269.43,
+          'credit': 1000.00,
+          'currency': 'PLN',
+          'equity': 995985397.56,
+          'margin': 572634.43,
+          'margin_free': 995227635.00,
+          'margin_level': 173930.41
+        }
+      }
+    )
   end
 
   describe '#call' do
@@ -25,13 +27,13 @@ RSpec.describe Xtb::Http::MarginLevel do
 
     specify do
       expect(command.call).to have_attributes(
-        balance: 1000.0,
-        credit: 0.0,
-        currency: 'USD',
-        equity: 1000.0,
-        margin: 0.0,
-        margin_free: 1000.0,
-        margin_level: 0.0
+        balance: 995800269.43,
+        credit: 1000.00,
+        currency: 'PLN',
+        equity: 995985397.56,
+        margin: 572634.43,
+        margin_free: 995227635.00,
+        margin_level: 173930.41
       )
     end
   end

@@ -4,8 +4,8 @@ module Xtb
   module Http
     # http://developers.xstore.pro/documentation/current#getTickPrices
     class TickPrices < Command
-      TickPrice = Data.define(:ask, :ask_volumne, :bid, bind_volumen, :high, :level, :low, :spread_raw, :spread_table,
-                              :symbol, :timestamp)
+      TickRecord = Data.define(:ask, :ask_volume, :bid, :bid_volume, :high, :level, :low, :spread_raw, :spread_table,
+                               :symbol, :timestamp)
 
       def initialize(level, symbols, timestamp)
         @level = level
@@ -14,7 +14,7 @@ module Xtb
       end
 
       def call
-        super.map { |item| TickPrice.new(**item) }
+        super[:quotations].map { |record| TickRecord.new(**record) }
       end
 
       private

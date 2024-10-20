@@ -4,19 +4,21 @@ RSpec.describe Xtb::Http::CurrentUserData do
   subject(:command) { described_class.new }
 
   let(:response) do
-    JSON.dump({
-                'status' => true,
-                'return_data' => {
-                  'companyUnit' => 1,
-                  'currency' => 'USD',
-                  'group' => 'demoPLeurSTANDARD200',
-                  'ibAccount' => false,
-                  'leverage' => 1,
-                  'leverageMultiplier' => 0.25,
-                  'spreadType' => 'FLOAT',
-                  'trailingStop' => false
-                }
-              })
+    JSON.dump(
+      {
+        'status': true,
+        'return_data': {
+          'companyUnit': 8,
+          'currency': 'PLN',
+          'group': 'demoPLeurSTANDARD200',
+          'ibAccount': false,
+          'leverage': 1,
+          'leverageMultiplier': 0.25,
+          'spreadType': 'FLOAT',
+          'trailingStop': false
+        }
+      }
+    )
   end
 
   describe '#call' do
@@ -26,8 +28,8 @@ RSpec.describe Xtb::Http::CurrentUserData do
 
     specify do
       expect(command.call).to have_attributes(
-        company_unit: 1,
-        currency: 'USD',
+        company_unit: 8,
+        currency: 'PLN',
         group: 'demoPLeurSTANDARD200',
         ib_account: false,
         leverage: 1,
