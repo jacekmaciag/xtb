@@ -21,10 +21,6 @@ RSpec.describe Xtb::Http::MarginLevel do
   end
 
   describe '#call' do
-    before do
-      allow(Xtb::Http::SslClient).to receive(:request).and_return(response)
-    end
-
     specify do
       expect(Xtb::Http::SslClient)
         .to receive(:request)

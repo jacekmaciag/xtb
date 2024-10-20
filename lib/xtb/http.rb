@@ -11,6 +11,7 @@ require_relative 'http/chart_range_request'
 require_relative 'http/commission_def'
 require_relative 'http/current_user_data'
 require_relative 'http/margin_level'
+require_relative 'http/margin_trade'
 require_relative 'http/tick_prices'
 
 module Xtb

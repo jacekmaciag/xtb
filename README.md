@@ -1,7 +1,8 @@
 # XTB API client for Ruby
 
-Xtb is a Ruby implementation of the XTB broker API (xAPI) that allows you to connect to the
-XTB broker and execute trades, get account information, and more.
+Xtb is a Ruby implementation of the [XTB broker API (xAPI) version 2.5.0](http://developers.xstore.pro/documentation/2.5.0).
+At the time of writing this it's the latest version of the API.
+This gem allows you to connect to the XTB broker and execute trades, get account information, and more.
 
 ## Installation
 
