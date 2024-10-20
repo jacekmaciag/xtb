@@ -82,7 +82,6 @@ RSpec.describe Xtb::Http::TradeRecords do
           sl: 0.0,
           storage: -4.46,
           symbol: 'EURUSD',
-
           timestamp: 1_272_540_251_000,
           tp: 0.0,
           volume: 0.10
