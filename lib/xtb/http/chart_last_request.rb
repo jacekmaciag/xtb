@@ -2,14 +2,14 @@
 
 module Xtb
   module Http
-    # http://developers.xstore.pro/documentation/current#getCalendar
+    # http://developers.xstore.pro/documentation/current#getChartLastRequest
     class ChartLastRequest < Command
       RateInfoRecord = Data.define(:close, :ctm, :ctm_string, :high, :low, :open, :vol)
       ChartLastRequestResponse = Data.define(:digits, :rate_infos)
 
       # @param period [Xtb::Period]
       # @param start [Time]
-      # symbol [String|Symbol]
+      # @param symbol [String|Symbol]
       def initialize(period, start, symbol)
         @period = period
         @start = start
@@ -29,7 +29,8 @@ module Xtb
       def command = :getChartLastRequest
 
       def arguments
-        { info:
+        {
+          info:
           {
             period:,
             start:,

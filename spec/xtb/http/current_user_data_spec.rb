@@ -29,15 +29,15 @@ RSpec.describe Xtb::Http::CurrentUserData do
         .and_return(response)
       expect(command.call)
         .to have_attributes(
-        company_unit: 8,
-        currency: 'PLN',
-        group: 'demoPLeurSTANDARD200',
-        ib_account: false,
-        leverage: 1,
-        leverage_multiplier: 0.25,
-        spread_type: 'FLOAT',
-        trailing_stop: false
-      )
+          company_unit: 8,
+          currency: 'PLN',
+          group: 'demoPLeurSTANDARD200',
+          ib_account: false,
+          leverage: 1,
+          leverage_multiplier: 0.25,
+          spread_type: 'FLOAT',
+          trailing_stop: false
+        )
     end
   end
 end

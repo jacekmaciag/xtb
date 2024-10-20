@@ -25,16 +25,16 @@ RSpec.describe Xtb::Http::TickPrices do
           'quotations': [
             {
               'ask': 4000.0,
-              'askVolume': 15000,
+              'askVolume': 15_000,
               'bid': 4000.0,
-              'bidVolume': 16000,
+              'bidVolume': 16_000,
               'high': 4000.0,
               'level': 0,
               'low': 3500.0,
               'spreadRaw': 0.000003,
               'spreadTable': 0.00042,
               'symbol': 'KOMB.CZ',
-              'timestamp': 1272529161605
+              'timestamp': 1_272_529_161_605
             }
           ]
         }
@@ -50,18 +50,18 @@ RSpec.describe Xtb::Http::TickPrices do
         .and_return(response)
       expect(command.call.last)
         .to have_attributes(
-              ask: 4000.0,
-              ask_volume: 15000,
-              bid: 4000.0,
-              bid_volume: 16000,
-              high: 4000.0,
-              level: 0,
-              low: 3500.0,
-              spread_raw: 0.000003,
-              spread_table: 0.00042,
-              symbol: 'KOMB.CZ',
-              timestamp: 1_272_529_161_605
-            )
+          ask: 4000.0,
+          ask_volume: 15_000,
+          bid: 4000.0,
+          bid_volume: 16_000,
+          high: 4000.0,
+          level: 0,
+          low: 3500.0,
+          spread_raw: 0.000003,
+          spread_table: 0.00042,
+          symbol: 'KOMB.CZ',
+          timestamp: 1_272_529_161_605
+        )
     end
   end
 end
