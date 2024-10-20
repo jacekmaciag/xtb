@@ -37,4 +37,9 @@ module Xtb
                              :spread_raw, :spread_table, :starting, :step_rule_id, :stops_level, :swap_rollover3days,
                              :swap_enable, :swap_long, :swap_short, :swap_type, :symbol, :tick_size, :tick_value,
                              :time, :time_string, :trailing_enabled, :type)
+
+  TradeRecord = Data.define(:close_price, :close_time, :close_time_string, :closed, :cmd, :comment, :commission,
+                            :custom_comment, :digits, :expiration, :expiration_string, :margin_rate, :offset,
+                            :open_price, :open_time, :open_time_string, :order, :order2, :position, :profit, :sl,
+                            :storage, :symbol, :timestamp, :tp, :volume)
 end
