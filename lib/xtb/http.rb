@@ -15,6 +15,7 @@ require_relative 'http/margin_trade'
 require_relative 'http/news'
 require_relative 'http/profit_calculation'
 require_relative 'http/server_time'
+require_relative 'http/step_rules'
 require_relative 'http/tick_prices'
 
 module Xtb
