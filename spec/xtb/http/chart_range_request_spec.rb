@@ -4,7 +4,7 @@ RSpec.describe Xtb::Http::ChartRangeRequest do
   subject(:command) { described_class.new(end_time, period, start_time, symbol) }
 
   let(:end_time) { 1_272_529_161_605 }
-  let(:period) { Xtb::Period[:m5] }
+  let(:period) { Xtb::PERIOD[:m5] }
   let(:start_time) { 1_272_529_161_605 }
   let(:symbol) { 'KOMB.CZ' }
 

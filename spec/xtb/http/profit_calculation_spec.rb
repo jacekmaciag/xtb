@@ -1,17 +1,23 @@
 # frozen_string_literal: true
 
-RSpec.describe Xtb::Http::MarginTrade do
-  subject(:command) { described_class.new(symbol, volume) }
+RSpec.describe Xtb::Http::ProfitCalculation do
+  subject(:command) { described_class.new(close_price, cmd, open_price, symbol, volume) }
 
+  let(:close_price) { 1.3000 }
+  let(:cmd) { :buy }
+  let(:open_price) { 1.2233 }
   let(:symbol) { 'EURPLN' }
   let(:volume) { 1.0 }
 
   let(:request) do
     {
-      command: :getMarginTrade,
+      command: :getProfitCalculation,
       arguments: {
-        symbol: 'EURPLN',
-        volume: 1.0
+        closePrice: close_price,
+        cmd: 0,
+        openPrice: open_price,
+        symbol:,
+        volume:
       }
     }
   end
@@ -19,18 +25,14 @@ RSpec.describe Xtb::Http::MarginTrade do
     JSON.dump(
       {
         'status': true,
-        'returnData': {
-          'margin': 4399.350
+        'return_data': {
+          'profit': 0.0767
         }
       }
     )
   end
 
   describe '#call' do
-    before do
-      allow(Xtb::Http::SslClient).to receive(:request).and_return(response)
-    end
-
     specify do
       expect(Xtb::Http::SslClient)
         .to receive(:request)
@@ -38,7 +40,7 @@ RSpec.describe Xtb::Http::MarginTrade do
         .and_return(response)
       expect(command.call)
         .to have_attributes(
-          margin: 4399.350
+          profit: 0.0767
         )
     end
   end

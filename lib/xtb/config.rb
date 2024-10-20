@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 module Xtb
+  # Configuration mapping for XTB API.
   class Config
     class << self
       def https_host

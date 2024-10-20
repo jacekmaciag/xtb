@@ -2,7 +2,7 @@
 
 module Xtb
   module Http
-    # http://developers.xstore.pro/documentation/current#getTickPrices
+    # http://developers.xstore.pro/documentation/2.5.0#getTickPrices
     class TickPrices < Command
       TickRecord = Data.define(:ask, :ask_volume, :bid, :bid_volume, :high, :level, :low, :spread_raw, :spread_table,
                                :symbol, :timestamp)

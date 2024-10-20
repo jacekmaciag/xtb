@@ -13,9 +13,10 @@ require_relative 'http/current_user_data'
 require_relative 'http/margin_level'
 require_relative 'http/margin_trade'
 require_relative 'http/news'
+require_relative 'http/profit_calculation'
 require_relative 'http/tick_prices'
 
 module Xtb
-  module Http
+  module Http # :nodoc:
   end
 end

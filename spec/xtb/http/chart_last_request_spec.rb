@@ -3,7 +3,7 @@
 RSpec.describe Xtb::Http::ChartLastRequest do
   subject(:command) { described_class.new(period, start, symbol) }
 
-  let(:period) { Xtb::Period[:m5] }
+  let(:period) { Xtb::PERIOD[:m5] }
   let(:start) { 1_272_529_161_605 }
   let(:symbol) { 'KOMB.CZ' }
 

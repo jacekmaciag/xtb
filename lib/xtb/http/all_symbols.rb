@@ -2,7 +2,7 @@
 
 module Xtb
   module Http
-    # http://developers.xstore.pro/documentation/current#getAllSymbols
+    # http://developers.xstore.pro/documentation/2.5.0#getAllSymbols
     class AllSymbols < Command
       Symbol = Data.define(:ask, :bid, :category_name, :contract_size, :currency, :currency_pair, :currency_profit,
                            :description, :exemode, :expiration, :group_name, :high, :initial_margin,

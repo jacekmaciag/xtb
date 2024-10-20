@@ -2,7 +2,7 @@
 
 module Xtb
   module Http
-    # http://developers.xstore.pro/documentation/current#getCommissionDef
+    # http://developers.xstore.pro/documentation/2.5.0#getCommissionDef
     class CommissionDef < Command
       CommissionDefResponse = Data.define(:commission, :rate_of_exchange)
 

@@ -2,12 +2,12 @@
 
 module Xtb
   module Http
-    # http://developers.xstore.pro/documentation/current#getChartLastRequest
+    # http://developers.xstore.pro/documentation/2.5.0#getChartLastRequest
     class ChartLastRequest < Command
       RateInfoRecord = Data.define(:close, :ctm, :ctm_string, :high, :low, :open, :vol)
       ChartLastRequestResponse = Data.define(:digits, :rate_infos)
 
-      # @param period [Xtb::Period]
+      # @param period [Xtb::PERIOD]
       # @param start [Time]
       # @param symbol [String|Symbol]
       def initialize(period, start, symbol)

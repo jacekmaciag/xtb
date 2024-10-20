@@ -2,13 +2,13 @@
 
 module Xtb
   module Http
-    # http://developers.xstore.pro/documentation/current#getChartRangeRequest
+    # http://developers.xstore.pro/documentation/2.5.0#getChartRangeRequest
     class ChartRangeRequest < Command
       RateInfoRecord = Data.define(:close, :ctm, :ctm_string, :high, :low, :open, :vol)
       ChartLastRequestResponse = Data.define(:digits, :rate_infos)
 
       # @param end_time [Time] End of chart block
-      # @param period [Xtb::Period] Period code
+      # @param period [Xtb::PERIOD] Period code
       # @param start_time [Time] Start of chart block
       # @param symbol [String|Symbol] Symbol
       # @param ticks [Integer] (Optional) Number of ticks needed

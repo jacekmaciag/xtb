@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe Xtb::Http::CommissionDef do
   subject(:command) { described_class.new(symbol, volume) }
 
@@ -29,8 +31,8 @@ RSpec.describe Xtb::Http::CommissionDef do
     specify do
       expect(Xtb::Http::SslClient)
         .to receive(:request)
-              .with(JSON.dump(request))
-              .and_return(response)
+        .with(JSON.dump(request))
+        .and_return(response)
       expect(command.call)
         .to have_attributes(
           commission: 0.51,
