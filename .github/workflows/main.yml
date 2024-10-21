@@ -14,14 +14,19 @@ jobs:
     strategy:
       matrix:
         ruby:
-          - '3.2.4'
+          - '3.3.3'
 
     steps:
     - uses: actions/checkout@v4
+
     - name: Set up Ruby
       uses: ruby/setup-ruby@v1
       with:
         ruby-version: ${{ matrix.ruby }}
         bundler-cache: true
+
+    - name: Execute specs
+      run: bundle exec rspec
+
     - name: Run the default task
       run: bundle exec rake

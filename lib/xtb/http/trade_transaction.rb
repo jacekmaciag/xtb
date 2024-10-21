@@ -12,21 +12,22 @@ module Xtb
       # @param offset [Integer]
       # @param order [Integer]
       # @param price [Float]
-      # @param sl [Float]
+      # @param stop_loss [Float]
       # @param symbol [String]
-      # @param tp [Float]
+      # @param take_profit [Float]
       # @param type [Symbol]
       # @param volume [Float]
-      def initialize(cmd:, custom_comment:, expiration:, offset:, order:, price:, sl:, symbol:, tp:, type:, volume:)
+      def initialize(cmd:, custom_comment:, expiration:, offset:, order:, price:, stop_loss:, symbol:, take_profit:,
+                     type:, volume:)
         @cmd = cmd
         @custom_comment = custom_comment
         @expiration = expiration
         @offset = offset
         @order = order
         @price = price
-        @sl = sl
+        @stop_loss = stop_loss
         @symbol = symbol
-        @tp = tp
+        @take_profit = take_profit
         @type = type
         @volume = volume
       end
@@ -37,7 +38,8 @@ module Xtb
 
       private
 
-      attr_reader :cmd, :custom_comment, :expiration, :offset, :order, :price, :sl, :symbol, :tp, :type, :volume
+      attr_reader :cmd, :custom_comment, :expiration, :offset, :order, :price, :stop_loss, :symbol, :take_profit,
+                  :type, :volume
 
       def command = :tradeTransaction
 
@@ -50,9 +52,9 @@ module Xtb
             offset:,
             order:,
             price:,
-            sl:,
+            sl: stop_loss,
             symbol:,
-            tp:,
+            tp: take_profit,
             type: Xtb::TRADE_TRANSACTION_TYPES[type],
             volume:
           }

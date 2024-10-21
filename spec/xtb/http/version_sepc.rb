@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe Xtb::Http::Version do
   subject(:command) { described_class.new }
 
@@ -18,12 +20,12 @@ RSpec.describe Xtb::Http::Version do
     specify do
       expect(Xtb::Http::SslClient)
         .to receive(:request)
-              .with(JSON.dump(command: :getVersion))
-              .and_return(response)
+        .with(JSON.dump(command: :getVersion))
+        .and_return(response)
       expect(call)
         .to have_attributes(
-              version: '2.4.15'
-            )
+          version: '2.4.15'
+        )
     end
   end
 end

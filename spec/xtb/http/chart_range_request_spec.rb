@@ -17,7 +17,7 @@ RSpec.describe Xtb::Http::ChartRangeRequest do
           end: end_time,
           period: 5,
           start: start_time,
-          symbol: symbol
+          symbol:
         }
       }
     }
@@ -80,7 +80,7 @@ RSpec.describe Xtb::Http::ChartRangeRequest do
               end: end_time,
               period: 5,
               start: start_time,
-              symbol: symbol,
+              symbol:,
               ticks:
             }
           }
