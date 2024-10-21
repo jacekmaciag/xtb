@@ -6,7 +6,8 @@ require_relative 'xtb/web_socket'
 require_relative 'xtb/config'
 
 module Xtb
-  PERIOD = {
+  # Periods in minutes.
+  PERIODS = {
     m1: 1,
     m5: 5,
     m15: 15,
@@ -18,7 +19,8 @@ module Xtb
     mn1: 43_200
   }.freeze
 
-  OPERATION = {
+  # Operations with XTB broker codes.
+  OPERATIONS = {
     buy: 0,
     sell: 1,
     buy_limit: 2,
@@ -27,6 +29,15 @@ module Xtb
     sell_stop: 5,
     balance: 6,
     credit: 7
+  }.freeze
+
+  # Trade transaction type with XTB broker codes.
+  TRADE_TRANSACTION_TYPES = {
+    open: 0,
+    pending: 1,
+    close: 2,
+    modify: 3,
+    delete: 4
   }.freeze
 
   SymbolRecord = Data.define(:ask, :bid, :category_name, :contract_size, :currency, :currency_pair, :currency_profit,

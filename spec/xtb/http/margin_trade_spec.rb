@@ -27,16 +27,14 @@ RSpec.describe Xtb::Http::MarginTrade do
   end
 
   describe '#call' do
-    before do
-      allow(Xtb::Http::SslClient).to receive(:request).and_return(response)
-    end
+    subject(:call) { command.call }
 
     specify do
       expect(Xtb::Http::SslClient)
         .to receive(:request)
         .with(JSON.dump(request))
         .and_return(response)
-      expect(command.call)
+      expect(call)
         .to have_attributes(
           margin: 4399.350
         )

@@ -65,12 +65,14 @@ RSpec.describe Xtb::Http::AllSymbols do
   end
 
   describe '#call' do
+    subject(:call) { command.call }
+
     specify do
       expect(Xtb::Http::SslClient)
         .to receive(:request)
         .with(JSON.dump(command: :getAllSymbols))
         .and_return(response)
-      expect(command.call.last)
+      expect(call.last)
         .to have_attributes(
           ask: 4000.0,
           bid: 4000.0,

@@ -43,12 +43,14 @@ RSpec.describe Xtb::Http::TickPrices do
   end
 
   describe '#call' do
+    subject(:call) { command.call }
+
     specify do
       expect(Xtb::Http::SslClient)
         .to receive(:request)
         .with(JSON.dump(request))
         .and_return(response)
-      expect(command.call.last)
+      expect(call.last)
         .to have_attributes(
           ask: 4000.0,
           ask_volume: 15_000,

@@ -1,12 +1,13 @@
 # frozen_string_literal: true
 
 RSpec.describe Xtb::Http::ChartRangeRequest do
-  subject(:command) { described_class.new(end_time, period, start_time, symbol) }
+  subject(:command) { described_class.new(end_time, period, start_time, symbol, ticks:) }
 
   let(:end_time) { 1_272_529_161_605 }
-  let(:period) { Xtb::PERIOD[:m5] }
+  let(:period) { Xtb::PERIODS[:m5] }
   let(:start_time) { 1_272_529_161_605 }
   let(:symbol) { 'KOMB.CZ' }
+  let(:ticks) { nil }
 
   let(:request) do
     {
@@ -44,12 +45,14 @@ RSpec.describe Xtb::Http::ChartRangeRequest do
   end
 
   describe '#call' do
+    subject(:call) { command.call }
+
     specify do
       expect(Xtb::Http::SslClient)
         .to receive(:request)
         .with(JSON.dump(request))
         .and_return(response)
-      expect(command.call)
+      expect(call)
         .to have_attributes(
           digits: 4,
           rate_infos: [
@@ -67,8 +70,6 @@ RSpec.describe Xtb::Http::ChartRangeRequest do
     end
 
     context 'with ticks argument' do
-      subject(:command) { described_class.new(end_time, period, start_time, symbol, ticks:) }
-
       let(:ticks) { 100 }
 
       let(:request) do
@@ -91,7 +92,7 @@ RSpec.describe Xtb::Http::ChartRangeRequest do
           .to receive(:request)
           .with(JSON.dump(request))
           .and_return(response)
-        expect(command.call)
+        expect(call)
           .to have_attributes(
             digits: 4,
             rate_infos: [

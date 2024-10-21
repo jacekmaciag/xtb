@@ -37,12 +37,14 @@ RSpec.describe Xtb::Http::TradingHours do
   end
 
   describe '#call' do
+    subject(:call) { command.call }
+
     specify do
       expect(Xtb::Http::SslClient)
         .to receive(:request)
         .with(JSON.dump(request))
         .and_return(response)
-      expect(command.call.first)
+      expect(call.first)
         .to have_attributes(
           quotes: {
             day: 2,

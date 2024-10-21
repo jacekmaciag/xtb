@@ -7,7 +7,7 @@ module Xtb
       RateInfoRecord = Data.define(:close, :ctm, :ctm_string, :high, :low, :open, :vol)
       ChartLastRequestResponse = Data.define(:digits, :rate_infos)
 
-      # @param period [Xtb::PERIOD]
+      # @param period [Xtb::PERIODS]
       # @param start [Time]
       # @param symbol [String|Symbol]
       def initialize(period, start, symbol)

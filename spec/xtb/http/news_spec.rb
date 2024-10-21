@@ -34,12 +34,14 @@ RSpec.describe Xtb::Http::News do
   end
 
   describe '#call' do
+    subject(:call) { command.call }
+
     specify do
       expect(Xtb::Http::SslClient)
         .to receive(:request)
         .with(JSON.dump(request))
         .and_return(response)
-      expect(command.call)
+      expect(call)
         .to contain_exactly(
           have_attributes(
             body: '<html>...</html>',

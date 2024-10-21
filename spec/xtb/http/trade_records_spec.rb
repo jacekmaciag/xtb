@@ -52,12 +52,14 @@ RSpec.describe Xtb::Http::TradeRecords do
   end
 
   describe '#call' do
+    subject(:call) { command.call }
+
     specify do
       expect(Xtb::Http::SslClient)
         .to receive(:request)
         .with(JSON.dump(request))
         .and_return(response)
-      expect(command.call.first)
+      expect(call.first)
         .to have_attributes(
           close_price: 1.3256,
           close_time: nil,

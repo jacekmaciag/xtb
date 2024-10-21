@@ -7,7 +7,7 @@ module Xtb
       ProfitCalculationResponse = Data.define(:profit)
 
       # @param close_price [Float]
-      # @param cmd [Xtb::OPERATION]
+      # @param cmd [Xtb::OPERATIONS]
       # @param open_price [Float]
       # @param symbol [String|Symbol]
       # @param volume [Float]
@@ -32,7 +32,7 @@ module Xtb
       def arguments
         {
           close_price:,
-          cmd: Xtb::OPERATION[cmd],
+          cmd: Xtb::OPERATIONS[cmd],
           open_price:,
           symbol:,
           volume:

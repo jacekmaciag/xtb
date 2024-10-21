@@ -8,7 +8,7 @@ module Xtb
       ChartLastRequestResponse = Data.define(:digits, :rate_infos)
 
       # @param end_time [Time] End of chart block
-      # @param period [Xtb::PERIOD] Period code
+      # @param period [Xtb::PERIODS] Period code
       # @param start_time [Time] Start of chart block
       # @param symbol [String|Symbol] Symbol
       # @param ticks [Integer] (Optional) Number of ticks needed

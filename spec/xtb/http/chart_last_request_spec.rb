@@ -3,7 +3,7 @@
 RSpec.describe Xtb::Http::ChartLastRequest do
   subject(:command) { described_class.new(period, start, symbol) }
 
-  let(:period) { Xtb::PERIOD[:m5] }
+  let(:period) { Xtb::PERIODS[:m5] }
   let(:start) { 1_272_529_161_605 }
   let(:symbol) { 'KOMB.CZ' }
 
@@ -42,12 +42,14 @@ RSpec.describe Xtb::Http::ChartLastRequest do
   end
 
   describe '#call' do
+    subject(:call) { command.call }
+
     specify do
       expect(Xtb::Http::SslClient)
         .to receive(:request)
         .with(JSON.dump(request))
         .and_return(response)
-      expect(command.call)
+      expect(call)
         .to have_attributes(
           digits: 4,
           rate_infos: [

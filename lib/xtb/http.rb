@@ -22,6 +22,7 @@ require_relative 'http/trade_records'
 require_relative 'http/trades'
 require_relative 'http/trades_history'
 require_relative 'http/trading_hours'
+require_relative 'http/version'
 
 module Xtb
   module Http # :nodoc:

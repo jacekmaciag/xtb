@@ -28,12 +28,14 @@ RSpec.describe Xtb::Http::CommissionDef do
   end
 
   describe '#call' do
+    subject(:call) { command.call }
+
     specify do
       expect(Xtb::Http::SslClient)
         .to receive(:request)
         .with(JSON.dump(request))
         .and_return(response)
-      expect(command.call)
+      expect(call)
         .to have_attributes(
           commission: 0.51,
           rate_of_exchange: 0.1609
