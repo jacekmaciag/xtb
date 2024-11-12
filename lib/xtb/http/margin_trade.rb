@@ -14,7 +14,7 @@ module Xtb
       end
 
       def call
-        MarginTradeResponse.new(**super)
+        MarginTradeResponse.new(**super.return_data)
       end
 
       private

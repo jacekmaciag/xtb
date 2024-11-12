@@ -7,7 +7,7 @@ module Xtb
       StepRecord = Data.define(:from_value, :step)
 
       def call
-        super.map { |record| StepRecord.new(**record) }
+        super.return_data.map { |record| StepRecord.new(**record) }
       end
 
       private

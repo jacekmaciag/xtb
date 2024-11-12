@@ -10,12 +10,12 @@ module Xtb
       base.extend(ClassMethods)
     end
 
-    module ClassMethods
+    module ClassMethods # :nodoc:
       private
 
       def with_request_queue(&block)
-        queue << block
-        queue << wait_proc
+        queue.push(block)
+        queue.push(wait_proc)
 
         result = queue.pop.call
         queue.pop.call

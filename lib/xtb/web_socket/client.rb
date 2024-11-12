@@ -2,6 +2,7 @@
 
 module Xtb
   module WebSocket
+    # Client for WebSocket connection.
     class Client
       include RequestQueue
 

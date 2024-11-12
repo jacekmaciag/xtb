@@ -5,6 +5,7 @@ require_relative '../config'
 
 module Xtb
   module Http
+    # SSL client for XTB API
     class SslClient
       class << self
         def request(payload)

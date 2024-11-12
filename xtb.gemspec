@@ -5,7 +5,7 @@ require_relative 'lib/xtb/version'
 Gem::Specification.new do |spec|
   spec.name = 'xtb'
   spec.version = Xtb::VERSION
-  spec.authors = ['jacekmaciag']
+  spec.authors = ['Jacek Maciag']
   spec.email = ['jacek.maciag@gmail.com']
 
   spec.summary = 'XTB API client for Ruby.'
@@ -16,7 +16,7 @@ Gem::Specification.new do |spec|
   spec.license = 'MIT'
   spec.required_ruby_version = '>= 3.1.0'
 
-  spec.metadata['allowed_push_host'] = 'http://rubygems.org'
+  spec.metadata['allowed_push_host'] = 'https://rubygems.org'
 
   spec.metadata['homepage_uri'] = spec.homepage
   spec.metadata['source_code_uri'] = spec.homepage

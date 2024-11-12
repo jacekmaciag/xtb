@@ -14,3 +14,5 @@ gem 'rubocop', '~> 1.21'
 
 gem 'memoist', '~> 0.16.2'
 gem 'openssl', '~> 3.1.0'
+
+gem 'rubocop-rspec', '~> 3.0'

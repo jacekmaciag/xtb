@@ -10,7 +10,7 @@ module Xtb
       end
 
       def call
-        Xtb::SymbolRecord.new(**super)
+        Xtb::SymbolRecord.new(**super.return_data)
       end
 
       private

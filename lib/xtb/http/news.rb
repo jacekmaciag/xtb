@@ -14,7 +14,7 @@ module Xtb
       end
 
       def call
-        super.map { |record| NewsTopicRecord.new(**record) }
+        super.return_data.map { |record| NewsTopicRecord.new(**record) }
       end
 
       private

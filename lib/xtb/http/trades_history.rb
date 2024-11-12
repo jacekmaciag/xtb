@@ -12,7 +12,7 @@ module Xtb
       end
 
       def call
-        super.map { |record| Xtb::TradeRecord.new(**record) }
+        super.return_data.map { |record| Xtb::TradeRecord.new(**record) }
       end
 
       private

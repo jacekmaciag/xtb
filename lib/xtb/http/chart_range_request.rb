@@ -21,7 +21,7 @@ module Xtb
       end
 
       def call
-        digits, rate_infos = super.values_at(:digits, :rate_infos)
+        digits, rate_infos = super.return_data.values_at(:digits, :rate_infos)
         rate_infos = rate_infos.map { |record| RateInfoRecord.new(**record) }
         ChartLastRequestResponse.new(digits:, rate_infos:)
       end

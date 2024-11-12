@@ -7,7 +7,7 @@ module Xtb
       MarginLevelResponse = Data.define(:balance, :credit, :currency, :equity, :margin, :margin_free, :margin_level)
 
       def call
-        MarginLevelResponse.new(**super)
+        MarginLevelResponse.new(**super.return_data)
       end
 
       private

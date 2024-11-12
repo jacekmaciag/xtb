@@ -1,4 +1,4 @@
-name: Ruby
+name: Tests
 
 on:
   push:
@@ -28,5 +28,5 @@ jobs:
     - name: Execute specs
       run: bundle exec rspec
 
-    - name: Run the default task
-      run: bundle exec rake
+    - name: Execute Rubocop checks
+      run: bundle exec rubocop

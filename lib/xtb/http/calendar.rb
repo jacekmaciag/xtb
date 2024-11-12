@@ -17,7 +17,7 @@ module Xtb
       end
 
       def call
-        super.map { |record| CalendarRecord.new(**record) }
+        super.return_data.map { |record| CalendarRecord.new(**record) }
       end
 
       private

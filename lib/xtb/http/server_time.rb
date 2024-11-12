@@ -7,7 +7,7 @@ module Xtb
       ServerTimeResponse = Data.define(:time, :time_string)
 
       def call
-        ServerTimeResponse.new(**super)
+        ServerTimeResponse.new(**super.return_data)
       end
 
       private

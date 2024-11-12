@@ -14,7 +14,7 @@ module Xtb
       end
 
       def call
-        super[:quotations].map { |record| TickRecord.new(**record) }
+        super.return_data[:quotations].map { |record| TickRecord.new(**record) }
       end
 
       private

@@ -1,11 +1,12 @@
 # frozen_string_literal: true
 
 require_relative 'ssl_client'
-require_relative '../errors'
+require_relative '../error'
 require_relative '../request_queue'
 
 module Xtb
   module Http
+    # Client for XTB API
     class Client
       include RequestQueue
 

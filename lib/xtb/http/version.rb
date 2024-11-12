@@ -7,7 +7,7 @@ module Xtb
       VersionResponse = Data.define(:version)
 
       def call
-        VersionResponse.new(**super)
+        VersionResponse.new(**super.return_data)
       end
 
       private

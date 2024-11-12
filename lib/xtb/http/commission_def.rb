@@ -14,7 +14,7 @@ module Xtb
       end
 
       def call
-        CommissionDefResponse.new(**super)
+        CommissionDefResponse.new(**super.return_data)
       end
 
       private

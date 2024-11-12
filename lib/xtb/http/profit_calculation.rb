@@ -20,7 +20,7 @@ module Xtb
       end
 
       def call
-        ProfitCalculationResponse.new(**super)
+        ProfitCalculationResponse.new(**super.return_data)
       end
 
       private

@@ -5,7 +5,7 @@ module Xtb
     # http://developers.xstore.pro/documentation/2.5.0#getAllSymbols
     class AllSymbols < Command
       def call
-        super.map { |symbol| Xtb::SymbolRecord.new(**symbol) }
+        super.return_data.map { |symbol| Xtb::SymbolRecord.new(**symbol) }
       end
 
       private

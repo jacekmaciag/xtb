@@ -6,33 +6,39 @@ This gem allows you to connect to the XTB broker and execute trades, get account
 
 ## Installation
 
-TODO: Replace `UPDATE_WITH_YOUR_GEM_NAME_IMMEDIATELY_AFTER_RELEASE_TO_RUBYGEMS_ORG` with your gem name right after releasing it to RubyGems.org. Please do not do it earlier due to security reasons. Alternatively, replace this section with instructions to install your gem from git if you don't plan to release to RubyGems.org.
-
 Install the gem and add to the application's Gemfile by executing:
 
-    $ bundle add UPDATE_WITH_YOUR_GEM_NAME_IMMEDIATELY_AFTER_RELEASE_TO_RUBYGEMS_ORG
+    $ bundle add xtb
 
 If bundler is not being used to manage dependencies, install the gem by executing:
 
-    $ gem install UPDATE_WITH_YOUR_GEM_NAME_IMMEDIATELY_AFTER_RELEASE_TO_RUBYGEMS_ORG
+    $ gem install xtb
 
 ## Usage
 
 ### Configuration
 
-Before you can connect to the XTB API, you need to configure the connection. 
-You can do this by creating a configuration object and passing it to the client.
+Before you can connect to the XTB API, you need to configure the connection.
     
-```ruby
-
+```shell
+XTB__USER_ID=your_user_id
+XTB__PASSWORD=your_password
 ```
 
 ### Connect to the XTB API
 
 ```ruby
+require 'xtb'
 
+Xtb::Http::Login.call
+
+# You're ready to use the API
+Xtb::Http::CurrentUserData.call
 ```
 
+### Subscribing to the XTB API streaming commands
+
+🚧 The streaming API is not yet supported.
 
 ## Development
 

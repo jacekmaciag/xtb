@@ -8,7 +8,7 @@ module Xtb
                                             :leverage_multiplier, :spread_type, :trailing_stop)
 
       def call
-        CurrentUserDataResponse.new(**super)
+        CurrentUserDataResponse.new(**super.return_data)
       end
 
       private

@@ -6,7 +6,7 @@ module Xtb
     class TradeTransaction < Command
       TradeTransactionResponse = Data.define(:order)
 
-      # @param cmd [Symbol]
+      # @param cmd [Symbol] One of :buy, :sell, :buy_limit, :sell_limit, :buy_stop, :sell_stop, :balance, or :credit
       # @param custom_comment [String]
       # @param expiration [Integer]
       # @param offset [Integer]
@@ -15,7 +15,7 @@ module Xtb
       # @param stop_loss [Float]
       # @param symbol [String]
       # @param take_profit [Float]
-      # @param type [Symbol]
+      # @param type [Symbol] One of :open, :pending, :close, :modify, or :delete
       # @param volume [Float]
       def initialize(cmd:, custom_comment:, expiration:, offset:, order:, price:, stop_loss:, symbol:, take_profit:,
                      type:, volume:)
@@ -33,7 +33,7 @@ module Xtb
       end
 
       def call
-        TradeTransactionResponse.new(**super)
+        TradeTransactionResponse.new(**super.return_data)
       end
 
       private

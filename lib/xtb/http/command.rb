@@ -2,7 +2,7 @@
 
 require 'json'
 require 'active_support/inflector'
-require_relative '../errors'
+require_relative '../error'
 
 module Xtb
   module Http
@@ -35,12 +35,17 @@ module Xtb
           @response = parse
         end
 
-        def success?
+        def status
           response[:status]
         end
+        alias_method :success?, :status
 
         def return_data
           response[:return_data]
+        end
+
+        def stream_session_id
+          response[:stream_session_id]
         end
 
         def error_code
@@ -85,13 +90,13 @@ module Xtb
         response = Response.new(command:, raw_response:)
         raise_error(response.error_code, response.error_description) unless response.success?
 
-        response.return_data
+        response
       end
 
       private
 
       def command
-        raise NotImplementedError
+        raise NotImplementedError('You must implement the command method')
       end
 
       def arguments
