@@ -30,11 +30,10 @@ XTB__PASSWORD=your_password
 ```ruby
 require 'xtb'
 
-Xtb::Http::Login.call
-
 # You're ready to use the API
 Xtb::Http::CurrentUserData.call
 ```
+Note that there is no need to log in first or log out afterwards. The gem handles the connection for you.
 
 ### Subscribing to the XTB API streaming commands
 
