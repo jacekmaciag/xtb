@@ -7,6 +7,8 @@ module Xtb
       # @param symbol [String|Symbol]
       def initialize(symbol)
         @symbol = symbol
+
+        super()
       end
 
       def call

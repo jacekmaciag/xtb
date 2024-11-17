@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require_relative '../../support/shared'
+
 RSpec.describe Xtb::Http::ChartRangeRequest do
   subject(:command) { described_class.new(end_time, period, start_time, symbol, ticks:) }
 
@@ -9,49 +11,49 @@ RSpec.describe Xtb::Http::ChartRangeRequest do
   let(:symbol) { 'KOMB.CZ' }
   let(:ticks) { nil }
 
-  let(:request) do
-    {
-      command: :getChartRangeRequest,
-      arguments: {
-        info: {
-          end: end_time,
-          period: 5,
-          start: start_time,
-          symbol:
-        }
-      }
-    }
-  end
-  let(:response) do
-    JSON.dump(
-      {
-        'status': true,
-        'return_data': {
-          'digits': 4,
-          'rateInfos': [
-            {
-              "close": 1.0,
-              "ctm": 1_389_362_640_000,
-              "ctmString": 'Jan 10, 2014 3:04:00 PM',
-              "high": 6.0,
-              "low": 0.0,
-              "open": 41_848.0,
-              "vol": 0.0
+  include_context('with xtb client stub') do
+    let(:request) do
+      JSON.dump(
+        {
+          command: :getChartRangeRequest,
+          arguments: {
+            info: {
+              end: end_time,
+              period: 5,
+              start: start_time,
+              symbol:
             }
-          ]
+          }
         }
-      }
-    )
+      )
+    end
+    let(:response) do
+      JSON.dump(
+        {
+          'status': true,
+          'return_data': {
+            'digits': 4,
+            'rateInfos': [
+              {
+                "close": 1.0,
+                "ctm": 1_389_362_640_000,
+                "ctmString": 'Jan 10, 2014 3:04:00 PM',
+                "high": 6.0,
+                "low": 0.0,
+                "open": 41_848.0,
+                "vol": 0.0
+              }
+            ]
+          }
+        }
+      )
+    end
   end
 
   describe '#call' do
     subject(:call) { command.call }
 
     specify do
-      expect(Xtb::Http::SslClient)
-        .to receive(:request)
-        .with(JSON.dump(request))
-        .and_return(response)
       expect(call)
         .to have_attributes(
           digits: 4,
@@ -72,26 +74,25 @@ RSpec.describe Xtb::Http::ChartRangeRequest do
     context 'with ticks argument' do
       let(:ticks) { 100 }
 
-      let(:request) do
-        {
-          command: :getChartRangeRequest,
-          arguments: {
-            info: {
-              end: end_time,
-              period: 5,
-              start: start_time,
-              symbol:,
-              ticks:
-            }
-          }
-        }
+      include_context('with xtb client stub') do
+        let(:request) do
+          JSON.dump({
+                      command: :getChartRangeRequest,
+                      arguments: {
+                        info: {
+                          end: end_time,
+                          period: 5,
+                          start: start_time,
+                          symbol:,
+                          ticks:
+                        }
+                      }
+                    })
+        end
+        let(:response) { super() }
       end
 
       specify do
-        expect(Xtb::Http::SslClient)
-          .to receive(:request)
-          .with(JSON.dump(request))
-          .and_return(response)
         expect(call)
           .to have_attributes(
             digits: 4,

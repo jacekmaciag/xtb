@@ -16,6 +16,8 @@ module Xtb
       # @param symbols [Array<String|Symbol>]
       def initialize(symbols)
         @symbols = symbols
+
+        super()
       end
 
       def call

@@ -7,6 +7,8 @@ module Xtb
       # @param orders [Array<Integer>] list of order ids
       def initialize(orders)
         @orders = orders
+
+        super()
       end
 
       def call

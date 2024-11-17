@@ -7,6 +7,8 @@ module Xtb
       # @param opened_only [Boolean]
       def initialize(opened_only)
         @opened_only = opened_only
+
+        super()
       end
 
       def call

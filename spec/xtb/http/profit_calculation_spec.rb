@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require_relative '../../support/shared'
+
 RSpec.describe Xtb::Http::ProfitCalculation do
   subject(:command) { described_class.new(close_price, cmd, open_price, symbol, volume) }
 
@@ -9,37 +11,37 @@ RSpec.describe Xtb::Http::ProfitCalculation do
   let(:symbol) { 'EURPLN' }
   let(:volume) { 1.0 }
 
-  let(:request) do
-    {
-      command: :getProfitCalculation,
-      arguments: {
-        closePrice: close_price,
-        cmd: 0,
-        openPrice: open_price,
-        symbol:,
-        volume:
-      }
-    }
-  end
-  let(:response) do
-    JSON.dump(
-      {
-        'status': true,
-        'return_data': {
-          'profit': 0.0767
+  include_context('with xtb client stub') do
+    let(:request) do
+      JSON.dump(
+        {
+          command: :getProfitCalculation,
+          arguments: {
+            closePrice: close_price,
+            cmd: 0,
+            openPrice: open_price,
+            symbol:,
+            volume:
+          }
         }
-      }
-    )
+      )
+    end
+    let(:response) do
+      JSON.dump(
+        {
+          'status': true,
+          'return_data': {
+            'profit': 0.0767
+          }
+        }
+      )
+    end
   end
 
   describe '#call' do
     subject(:call) { command.call }
 
     specify do
-      expect(Xtb::Http::SslClient)
-        .to receive(:request)
-        .with(JSON.dump(request))
-        .and_return(response)
       expect(call)
         .to have_attributes(
           profit: 0.0767

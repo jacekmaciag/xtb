@@ -11,6 +11,8 @@ module Xtb
       def initialize(end_time, start_time)
         @end_time = end_time
         @start_time = start_time
+
+        super()
       end
 
       def call

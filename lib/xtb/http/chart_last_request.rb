@@ -14,6 +14,8 @@ module Xtb
         @period = period
         @start = start
         @symbol = symbol
+
+        super()
       end
 
       def call

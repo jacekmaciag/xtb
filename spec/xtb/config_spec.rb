@@ -13,7 +13,7 @@ RSpec.describe Xtb::Config do
     context 'when the environment variable is set' do
       before { ENV['XTB__HTTPS_HOST'] = 'example.com' }
 
-      it 'returns the environment variable' do
+      it 'returns the environment variable value' do
         expect(config.https_host).to eq('example.com')
       end
     end
@@ -29,7 +29,7 @@ RSpec.describe Xtb::Config do
     context 'when the environment variable is set' do
       before { ENV['XTB__HTTPS_PORT'] = '1234' }
 
-      it 'returns the environment variable' do
+      it 'returns the environment variable value' do
         expect(config.https_port).to eq(1234)
       end
     end
@@ -45,7 +45,7 @@ RSpec.describe Xtb::Config do
     context 'when the environment variable is set' do
       before { ENV['XTB__WSS_HOST'] = 'example.com' }
 
-      it 'returns the environment variable' do
+      it 'returns the environment variable value' do
         expect(config.wss_host).to eq('example.com')
       end
     end
@@ -61,7 +61,7 @@ RSpec.describe Xtb::Config do
     context 'when the environment variable is set' do
       before { ENV['XTB__WSS_PATH'] = 'example' }
 
-      it 'returns the environment variable' do
+      it 'returns the environment variable value' do
         expect(config.wss_path).to eq('example')
       end
     end
@@ -77,7 +77,7 @@ RSpec.describe Xtb::Config do
     context 'when the environment variable is set' do
       before { ENV['XTB__WSS_PORT'] = '1234' }
 
-      it 'returns the environment variable' do
+      it 'returns the environment variable value' do
         expect(config.wss_port).to eq(1234)
       end
     end
@@ -93,7 +93,7 @@ RSpec.describe Xtb::Config do
     context 'when the environment variable is set' do
       before { ENV['XTB__USER_ID'] = 'user1234' }
 
-      it 'returns the environment variable' do
+      it 'returns the environment variable value' do
         expect(config.user_id).to eq('user1234')
       end
     end
@@ -109,8 +109,33 @@ RSpec.describe Xtb::Config do
     context 'when the environment variable is set' do
       before { ENV['XTB__PASSWORD'] = 'pass1234' }
 
-      it 'returns the environment variable' do
+      it 'returns the environment variable value' do
         expect(config.password).to eq('pass1234')
+      end
+    end
+  end
+
+  describe '.connection_pool_size' do
+    before { ENV['XTB__CONNECTION_POOL_SIZE'] = nil }
+
+    it 'returns the default value' do
+      expect(config.connection_pool_size).to eq(5)
+    end
+
+    context 'when the environment variable is set' do
+      before { ENV['XTB__CONNECTION_POOL_SIZE'] = '49' }
+
+      it 'returns the environment variable value' do
+        expect(config.connection_pool_size).to eq(49)
+      end
+
+      context 'when the request interval is less than the default value' do
+        before { ENV['XTB__CONNECTION_POOL_SIZE'] = '51' }
+
+        it 'raises an error' do
+          expect { config.connection_pool_size }
+            .to raise_error('Max connection pool size is 50')
+        end
       end
     end
   end
@@ -118,15 +143,24 @@ RSpec.describe Xtb::Config do
   describe '.min_request_interval' do
     before { ENV['XTB__MIN_REQUEST_INTERVAL'] = nil }
 
-    it 'raises an error' do
-      expect(config.min_request_interval).to eq(0.2)
+    it 'returns the default value' do
+      expect(config.min_request_interval).to eq(200)
     end
 
     context 'when the environment variable is set' do
-      before { ENV['XTB__MIN_REQUEST_INTERVAL'] = '5' }
+      before { ENV['XTB__MIN_REQUEST_INTERVAL'] = '201' }
 
-      it 'returns the environment variable' do
-        expect(config.min_request_interval).to eq(5.0)
+      it 'returns the environment variable value' do
+        expect(config.min_request_interval).to eq(201)
+      end
+
+      context 'when the request interval is less than the default value' do
+        before { ENV['XTB__MIN_REQUEST_INTERVAL'] = '199' }
+
+        it 'raises an error' do
+          expect { config.min_request_interval }
+            .to raise_error('Minimum request interval must be greater than or equal to 200')
+        end
       end
     end
   end

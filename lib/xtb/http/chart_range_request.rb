@@ -18,6 +18,8 @@ module Xtb
         @start_time = start_time
         @symbol = symbol
         @ticks = ticks
+
+        super()
       end
 
       def call

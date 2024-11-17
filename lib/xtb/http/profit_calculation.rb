@@ -17,6 +17,8 @@ module Xtb
         @open_price = open_price
         @symbol = symbol
         @volume = volume
+
+        super()
       end
 
       def call

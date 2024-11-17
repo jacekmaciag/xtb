@@ -1,40 +1,42 @@
 # frozen_string_literal: true
 
+require_relative '../../support/shared'
+
 RSpec.describe Xtb::Http::CommissionDef do
   subject(:command) { described_class.new(symbol, volume) }
 
   let(:symbol) { 'T.US' }
   let(:volume) { 1.0 }
 
-  let(:request) do
-    {
-      command: :getCommissionDef,
-      arguments: {
-        symbol:,
-        volume:
-      }
-    }
-  end
-  let(:response) do
-    JSON.dump(
-      {
-        'status': true,
-        'return_data': {
-          'commission': 0.51,
-          'rateOfExchange': 0.1609
+  include_context('with xtb client stub') do
+    let(:request) do
+      JSON.dump(
+        {
+          command: :getCommissionDef,
+          arguments: {
+            symbol:,
+            volume:
+          }
         }
-      }
-    )
+      )
+    end
+    let(:response) do
+      JSON.dump(
+        {
+          'status': true,
+          'return_data': {
+            'commission': 0.51,
+            'rateOfExchange': 0.1609
+          }
+        }
+      )
+    end
   end
 
   describe '#call' do
     subject(:call) { command.call }
 
     specify do
-      expect(Xtb::Http::SslClient)
-        .to receive(:request)
-        .with(JSON.dump(request))
-        .and_return(response)
       expect(call)
         .to have_attributes(
           commission: 0.51,

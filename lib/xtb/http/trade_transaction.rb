@@ -30,6 +30,8 @@ module Xtb
         @take_profit = take_profit
         @type = type
         @volume = volume
+
+        super()
       end
 
       def call

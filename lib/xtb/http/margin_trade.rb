@@ -11,6 +11,8 @@ module Xtb
       def initialize(symbol, volume)
         @symbol = symbol
         @volume = volume
+
+        super()
       end
 
       def call

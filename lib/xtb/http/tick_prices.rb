@@ -11,6 +11,8 @@ module Xtb
         @level = level
         @symbols = symbols
         @timestamp = timestamp
+
+        super()
       end
 
       def call

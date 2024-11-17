@@ -3,6 +3,7 @@
 require 'json'
 require 'active_support/inflector'
 require_relative '../error'
+require_relative '../error_factory'
 
 module Xtb
   module Http
@@ -38,6 +39,7 @@ module Xtb
         def status
           response[:status]
         end
+
         alias_method :success?, :status
 
         def return_data
@@ -78,22 +80,34 @@ module Xtb
         end
       end
 
-      def initialize(**args); end
+      def initialize(**args)
+        @args = args
+        @request_data = Request.new(command:, arguments:).to_json
+      end
 
       def self.call(**args)
         new(**args).call
       end
 
       def call
-        request_data = Request.new(command:, arguments:).to_json
-        raw_response = Client.post(request_data)
+        raw_response = if args[:connection]
+                         args.fetch(:connection).request(request_data)
+                       else
+                         Xtb::Http::Client.post do |connection|
+                           connection.request(request_data)
+                         end
+                       end
+
         response = Response.new(command:, raw_response:)
-        raise_error(response.error_code, response.error_description) unless response.success?
+
+        raise ErrorFactory.create(response.error_code, response.error_description) unless response.success?
 
         response
       end
 
       private
+
+      attr_reader :args, :request_data
 
       def command
         raise NotImplementedError('You must implement the command method')
@@ -101,17 +115,6 @@ module Xtb
 
       def arguments
         nil
-      end
-
-      def raise_error(error_code, error_description)
-        case error_code
-        when 'BE103'
-          raise NotLoggedInError, "(#{error_code}) #{error_description}"
-        when 'BE118'
-          raise AlreadyLoggedInError, "(#{error_code}) #{error_description}"
-        else
-          raise "(#{error_code}) #{error_description}"
-        end
       end
     end
   end
