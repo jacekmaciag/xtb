@@ -129,13 +129,29 @@ RSpec.describe Xtb::Config do
         expect(config.connection_pool_size).to eq(49)
       end
 
-      context 'when the request interval is less than the default value' do
+      context 'when the request interval is less than the default value' do # rubocop:disable RSpec/NestedGroups
         before { ENV['XTB__CONNECTION_POOL_SIZE'] = '51' }
 
         it 'raises an error' do
           expect { config.connection_pool_size }
             .to raise_error('Max connection pool size is 50')
         end
+      end
+    end
+  end
+
+  describe '.connection_pool_ttl' do
+    before { ENV['XTB__CONNECTION_POOL_TTL'] = nil }
+
+    it 'returns the default value' do
+      expect(config.connection_pool_ttl).to eq(60)
+    end
+
+    context 'when the environment variable is set' do
+      before { ENV['XTB__CONNECTION_POOL_TTL'] = '15' }
+
+      it 'returns the environment variable value' do
+        expect(config.connection_pool_ttl).to eq(15)
       end
     end
   end
@@ -154,7 +170,7 @@ RSpec.describe Xtb::Config do
         expect(config.min_request_interval).to eq(201)
       end
 
-      context 'when the request interval is less than the default value' do
+      context 'when the request interval is less than the default value' do # rubocop:disable RSpec/NestedGroups
         before { ENV['XTB__MIN_REQUEST_INTERVAL'] = '199' }
 
         it 'raises an error' do

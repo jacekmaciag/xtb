@@ -17,6 +17,8 @@ module Xtb
       # @param take_profit [Float]
       # @param type [Symbol] One of :open, :pending, :close, :modify, or :delete
       # @param volume [Float]
+      #
+      # rubocop:disable Metrics/MethodLength, Metrics/ParameterLists
       def initialize(cmd:, custom_comment:, expiration:, offset:, order:, price:, stop_loss:, symbol:, take_profit:,
                      type:, volume:)
         @cmd = cmd
@@ -33,6 +35,7 @@ module Xtb
 
         super()
       end
+      # rubocop:enable Metrics/MethodLength, Metrics/ParameterLists
 
       def call
         TradeTransactionResponse.new(**super.return_data)
@@ -45,7 +48,7 @@ module Xtb
 
       def command = :tradeTransaction
 
-      def arguments
+      def arguments # rubocop:disable Metrics/MethodLength
         {
           trade_trans_info: {
             cmd: Xtb::OPERATIONS[cmd],

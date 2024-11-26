@@ -48,6 +48,10 @@ module Xtb
         size
       end
 
+      def connection_pool_ttl
+        ENV.fetch('XTB__CONNECTION_POOL_TTL', 60).to_i
+      end
+
       def min_request_interval
         requests_interval = ENV.fetch('XTB__MIN_REQUEST_INTERVAL', MIN_REQUEST_INTERVAL).to_i
         if requests_interval < MIN_REQUEST_INTERVAL

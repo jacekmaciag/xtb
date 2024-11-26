@@ -45,7 +45,7 @@ RSpec.describe Xtb::Http::TradingHours do
   describe '#call' do
     subject(:call) { command.call }
 
-    specify do
+    specify do  # rubocop:disable RSpec/ExampleLength
       expect(call.first)
         .to have_attributes(
           quotes: {

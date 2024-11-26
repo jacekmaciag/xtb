@@ -53,7 +53,7 @@ RSpec.describe Xtb::Http::ChartRangeRequest do
   describe '#call' do
     subject(:call) { command.call }
 
-    specify do
+    specify do # rubocop:disable RSpec/ExampleLength
       expect(call)
         .to have_attributes(
           digits: 4,
@@ -92,7 +92,7 @@ RSpec.describe Xtb::Http::ChartRangeRequest do
         let(:response) { super() }
       end
 
-      specify do
+      specify do # rubocop:disable RSpec/ExampleLength
         expect(call)
           .to have_attributes(
             digits: 4,

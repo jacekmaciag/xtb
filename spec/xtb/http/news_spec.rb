@@ -42,7 +42,7 @@ RSpec.describe Xtb::Http::News do
   describe '#call' do
     subject(:call) { command.call }
 
-    specify do
+    specify do # rubocop:disable RSpec/ExampleLength
       expect(call)
         .to contain_exactly(
           have_attributes(

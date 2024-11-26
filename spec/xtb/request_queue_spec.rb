@@ -40,7 +40,7 @@ RSpec.describe Xtb::RequestQueue do
         class_using_request_queue.method_using_request_queue
       end
 
-      specify 'it executes requests synchronously respecting the minimum request interval' do
+      specify 'it executes requests synchronously respecting the minimum request interval' do  # rubocop:disable RSpec/ExampleLength, RSpec/MultipleExpectations
         expect(class_using_request_queue.request_times.size).to eq(2)
         class_using_request_queue.request_times.each_cons(2) do
           expect do |earlier_time, later_time|
@@ -51,7 +51,7 @@ RSpec.describe Xtb::RequestQueue do
     end
 
     context 'when requests are coming from separate threads' do
-      specify 'it executes requests synchronously respecting the minimum request interval' do
+      specify 'it executes requests synchronously respecting the minimum request interval' do  # rubocop:disable RSpec/ExampleLength, RSpec/MultipleExpectations
         threads = 2.times.map do |_i|
           Thread.new do
             Time.zone = 'UTC'

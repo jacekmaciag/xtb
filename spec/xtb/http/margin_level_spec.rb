@@ -28,7 +28,7 @@ RSpec.describe Xtb::Http::MarginLevel do
   describe '#call' do
     subject(:call) { command.call }
 
-    specify do
+    specify do # rubocop:disable RSpec/ExampleLength
       expect(call)
         .to have_attributes(
           balance: 995_800_269.43,

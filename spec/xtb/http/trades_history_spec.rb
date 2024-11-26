@@ -62,7 +62,7 @@ RSpec.describe Xtb::Http::TradesHistory do
   describe '#call' do
     subject(:call) { command.call }
 
-    specify do
+    specify do # rubocop:disable RSpec/ExampleLength
       expect(call.first)
         .to have_attributes(
           close_price: 1.3256,

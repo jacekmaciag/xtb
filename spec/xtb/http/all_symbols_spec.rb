@@ -72,7 +72,7 @@ RSpec.describe Xtb::Http::AllSymbols do
   describe '#call' do
     subject(:call) { command.call }
 
-    specify do
+    specify do # rubocop:disable RSpec/ExampleLength
       expect(call.last)
         .to have_attributes(
           ask: 4000.0,

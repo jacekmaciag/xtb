@@ -31,7 +31,7 @@ RSpec.describe Xtb::Http::Calendar do
   describe '#call' do
     subject(:call) { command.call }
 
-    specify do
+    specify do # rubocop:disable RSpec/ExampleLength
       expect(call.last)
         .to have_attributes(
           country: 'CA',

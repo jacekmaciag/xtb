@@ -16,7 +16,7 @@ module Xtb
         @ssl_socket = new_ssl_socket
       end
 
-      # Sends a request to the broker server. It utilizes a connection pool to manage connections.
+      # Sends a request to the broker server utilizing a connection pool to manage connections.
       def self.post
         connection_pool.with do |connection|
           with_request_queue do
@@ -24,19 +24,6 @@ module Xtb
           end
         end
       end
-
-      def request(payload)
-        ssl_socket.puts(payload)
-        response
-      end
-
-      def stream_session_id
-        @stream_session_id ||= BrokerClients::Xtb::Login.call.stream_session_id
-      end
-
-      private
-
-      attr_reader :ssl_socket
 
       def self.connection_pool
         @connection_pool ||= ConnectionPool.new(size: Config.connection_pool_size, timeout: 30) do
@@ -46,6 +33,16 @@ module Xtb
           connection
         end
       end
+      private_class_method :connection_pool
+
+      def request(payload)
+        ssl_socket.puts(payload)
+        response
+      end
+
+      private
+
+      attr_reader :ssl_socket
 
       def response
         buffer = []

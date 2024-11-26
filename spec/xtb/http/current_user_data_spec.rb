@@ -29,7 +29,7 @@ RSpec.describe Xtb::Http::CurrentUserData do
   describe '#call' do
     subject(:call) { command.call }
 
-    specify do
+    specify do # rubocop:disable RSpec/ExampleLength
       expect(call)
         .to have_attributes(
           company_unit: 8,
