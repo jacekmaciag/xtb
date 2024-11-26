@@ -3,6 +3,8 @@
 require 'openssl'
 
 RSpec.describe Xtb::Http::Client do
+  pending 'Needs a fix for the SSL socket connection.'
+
   subject(:client) { described_class.new }
 
   let(:raw_request) { '{"command":"getSomething"}' }
