@@ -19,10 +19,19 @@ If bundler is not being used to manage dependencies, install the gem by executin
 ### Configuration
 
 Before you can connect to the XTB API, you need to configure the connection.
-    
-```shell
-XTB__USER_ID=your_user_id
-XTB__PASSWORD=your_password
+
+```ruby
+Xtb.configure do |config|
+  config.user_id = 'your_user_id'
+  config.password = 'your_password'
+end
+```
+
+NOTE: If you're using the Ruby on Rails framework, you can put the configuration in the `config/application.rb` file.
+
+Here's a list of all available configuration options:
+```ruby
+
 ```
 
 ### Connect to the XTB API
@@ -31,13 +40,21 @@ XTB__PASSWORD=your_password
 require 'xtb'
 
 # You're ready to use the API
-Xtb::Http::CurrentUserData.call
+Xtb::Command::CurrentUserData.call
 ```
 Note that there is no need to log in first or log out afterwards. The gem handles the connection for you.
 
 ### Subscribing to the XTB API streaming commands
 
-🚧 The streaming API is not yet supported.
+Your message handler class should implement the `#call` method that will be called when a message is received from the XTB API.
+
+```ruby
+Xtb.configure do |config|
+  config.user_id = 'your_user_id'
+  config.password = 'your_password'
+  config.wss.message_handler = 'SomeClass'
+end
+```
 
 ## Development
 

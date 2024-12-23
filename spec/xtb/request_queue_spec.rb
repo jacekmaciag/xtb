@@ -31,7 +31,7 @@ RSpec.describe Xtb::RequestQueue do
     let(:min_request_interval) { 1 }
 
     before do
-      allow(Xtb::Config).to receive(:min_request_interval).and_return(min_request_interval)
+      allow(Xtb).to receive(:min_request_interval).and_return(min_request_interval)
     end
 
     context 'when requests are coming from the same thread' do

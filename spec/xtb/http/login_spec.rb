@@ -5,6 +5,11 @@ require_relative '../../support/shared'
 RSpec.describe Xtb::Http::Login do
   subject(:command) { described_class.new }
 
+  before do
+    Xtb.reset_config
+    allow(Xtb).to receive_messages(user_id: 'user_id', password: 'password')
+  end
+
   include_context('with xtb client stub') do
     let(:request) do
       JSON.dump(
@@ -25,10 +30,6 @@ RSpec.describe Xtb::Http::Login do
         }
       )
     end
-  end
-
-  before do
-    allow(Xtb::Config).to receive_messages(user_id: 'user_id', password: 'password')
   end
 
   describe '#call' do

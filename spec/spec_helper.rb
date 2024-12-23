@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require 'dry/configurable/test_interface'
 require 'xtb'
 
 RSpec.configure do |config|
@@ -11,5 +12,9 @@ RSpec.configure do |config|
 
   config.expect_with :rspec do |c|
     c.syntax = :expect
+  end
+
+  module Xtb
+    enable_test_interface
   end
 end

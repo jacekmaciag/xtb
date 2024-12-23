@@ -97,9 +97,7 @@ module Xtb
                            connection.request(request_data)
                          end
                        end
-
         response = Response.new(command:, raw_response:)
-
         raise ErrorFactory.create(response.error_code, response.error_description) unless response.success?
 
         response

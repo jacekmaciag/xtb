@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require 'active_support'
-require_relative 'config'
+require_relative 'configuration'
 
 module Xtb
   # Module provides a mechanism to limit the number of requests to the broker server.
@@ -31,7 +31,7 @@ module Xtb
       end
 
       def min_request_interval
-        @min_request_interval ||= Config.min_request_interval
+        @min_request_interval ||= Xtb.min_request_interval
       end
     end
   end

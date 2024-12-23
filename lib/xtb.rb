@@ -1,12 +1,15 @@
 # frozen_string_literal: true
 
+require 'dry-configurable'
+
 require_relative 'xtb/version'
 require_relative 'xtb/error'
 require_relative 'xtb/http'
-require_relative 'xtb/web_socket'
-require_relative 'xtb/config'
+require_relative 'xtb/ws'
 
 module Xtb
+  extend Dry::Configurable
+
   # Periods in minutes.
   PERIODS = {
     m1: 1,
@@ -54,4 +57,43 @@ module Xtb
                             :custom_comment, :digits, :expiration, :expiration_string, :margin_rate, :offset,
                             :open_price, :open_time, :open_time_string, :order, :order2, :position, :profit, :sl,
                             :storage, :symbol, :timestamp, :tp, :volume)
+
+  # Configurable settings.
+  ENVIRONMENTS = %i[demo real].freeze
+
+  HTTP_HOST = 'xapi.xtb.com'
+  WSS_HOST = 'ws.xtb.com'
+
+  DEMO_HTTPS_PORT = 5124
+  DEMO_WSS_PORT = 5125
+  DEMO_WSS_PATH = '/demoStream'
+
+  REAL_HTTPS_PORT = 5112
+  REAL_WSS_PORT = 5113
+  REAL_WSS_PATH = '/real'
+
+  DEFAULT_CONNECTION_POOL_SIZE = 5
+  MAX_CONNECTION_POOL_SIZE = 50
+  CONNECTION_POOL_TTL = 60
+  MIN_REQUEST_INTERVAL = 200 # in milliseconds
+  private_constant :ENVIRONMENTS, :HTTP_HOST, :WSS_HOST, :DEMO_HTTPS_PORT, :DEMO_WSS_PORT, :DEMO_WSS_PATH,
+                   :REAL_HTTPS_PORT, :REAL_WSS_PORT, :REAL_WSS_PATH, :DEFAULT_CONNECTION_POOL_SIZE,
+                   :MAX_CONNECTION_POOL_SIZE, :CONNECTION_POOL_TTL, :MIN_REQUEST_INTERVAL
+
+  setting :environment, default: :demo, reader: true
+  setting :https, reader: true do
+    setting :host, default: HTTP_HOST
+    setting :port, constructor: proc { Xtb.environment == :demo ? DEMO_HTTPS_PORT : REAL_HTTPS_PORT }
+  end
+  setting :wss, reader: true do
+    setting :host, default: WSS_HOST
+    setting :port, constructor: proc { Xtb.environment == :demo ? DEMO_WSS_PORT : REAL_WSS_PORT }
+    setting :path, constructor: proc { Xtb.environment == :demo ? DEMO_WSS_PATH : REAL_WSS_PATH }
+    setting :message_handler, reader: true
+  end
+  setting :user_id, reader: true, constructor: proc { ENV['XTB__USER_ID'] }
+  setting :password, reader: true, constructor: proc { ENV['XTB__PASSWORD'] }
+  setting :connection_pool_size, reader: true, default: DEFAULT_CONNECTION_POOL_SIZE
+  setting :connection_pool_ttl, reader: true, default: CONNECTION_POOL_TTL
+  setting :min_request_interval, reader: true, default: MIN_REQUEST_INTERVAL
 end

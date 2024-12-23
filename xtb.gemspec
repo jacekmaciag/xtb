@@ -36,6 +36,8 @@ Gem::Specification.new do |spec|
   spec.require_paths = ['lib']
 
   spec.add_dependency 'connection_pool', '~> 2.4'
+  spec.add_dependency 'dry-configurable', '~> 1.2'
+  spec.add_dependency 'faye-websocket', '~> 0.11.3'
   spec.add_dependency 'openssl', '~> 3.1.0'
 
   spec.add_development_dependency 'rspec', '~> 3.0'

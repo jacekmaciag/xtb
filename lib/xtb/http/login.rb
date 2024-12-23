@@ -22,11 +22,11 @@ module Xtb
       end
 
       def user_id
-        Xtb::Config.user_id
+        Xtb.user_id
       end
 
       def password
-        Xtb::Config.password
+        Xtb.password
       end
     end
   end

@@ -1,9 +1,10 @@
 # frozen_string_literal: true
 
+require 'openssl'
 require 'connection_pool'
 
 require_relative '../error'
-require_relative '../config'
+require_relative '../configuration'
 require_relative '../request_queue'
 
 module Xtb
@@ -11,6 +12,8 @@ module Xtb
     # Client for XTB API.
     class Client
       include RequestQueue
+
+      attr_accessor :stream_session_id
 
       def initialize
         @ssl_socket = new_ssl_socket
@@ -26,9 +29,10 @@ module Xtb
       end
 
       def self.connection_pool
-        @connection_pool ||= ConnectionPool.new(size: Config.connection_pool_size, timeout: 30) do
+        @connection_pool ||= ConnectionPool.new(size: Xtb.connection_pool_size, timeout: 30) do
           connection = new
-          Xtb::Http::Login.call(connection:)
+          login = Xtb::Http::Login.call(connection:)
+          connection.stream_session_id = login.stream_session_id
 
           connection
         end
@@ -57,8 +61,8 @@ module Xtb
       end
 
       def new_ssl_socket
-        OpenSSL::SSL::SSLSocket.open(Config.https_host, Config.https_port).tap do |socket|
-          socket.hostname = Config.https_host
+        OpenSSL::SSL::SSLSocket.open(Xtb.https.host, Xtb.https.port).tap do |socket|
+          socket.hostname = Xtb.https.host
           socket.sync_close = true
         end.connect
       end
