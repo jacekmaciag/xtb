@@ -29,11 +29,6 @@ end
 
 NOTE: If you're using the Ruby on Rails framework, you can put the configuration in the `config/application.rb` file.
 
-Here's a list of all available configuration options:
-```ruby
-
-```
-
 ### Connect to the XTB API
 
 ```ruby
