@@ -1,3 +1,8 @@
+## ⚠️ End of life notice
+
+XTB has announced that they will be discontinuing the API access on 14th of March 2025.
+This gem will no longer work after that date and will be archived.
+
 # XTB API client for Ruby
 
 Xtb is a Ruby implementation of the [XTB broker API (xAPI) version 2.5.0](http://developers.xstore.pro/documentation/2.5.0).
